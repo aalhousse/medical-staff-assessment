@@ -18,5 +18,15 @@ docker-compose build
 docker-compose up
 ```
 
+## Linting
+
+We use flake for linting. Run it with 
+
+```
+flake8 .
+```
+
+If you use a virtual environment, please use the flake command specified in the `Scripts` folder in the `venv` folder.
+
 ## Documentation
 TODO Link documentation here
