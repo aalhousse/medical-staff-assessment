@@ -1,0 +1,22 @@
+[flake8]
+# Maximum line length allowed
+max-line-length = 120
+
+# Ignore specific PEP8 violations (e.g., E501 for long lines)
+# Common codes to ignore: E203 (whitespace), W503 (line break before binary operator)
+ignore = E203, W503
+
+# Exclude certain directories or files (such as virtual environments, migrations, etc.)
+exclude =
+    .git,
+    __pycache__,
+    build,
+    dist,
+    .venv,
+    migrations,
+    env
+
+# Enable or disable specific plugins or extensions
+# Example: enabling flake8-docstrings for docstring linting
+# If installed, you can configure options for the plugin as well
+# docstring-convention = google
