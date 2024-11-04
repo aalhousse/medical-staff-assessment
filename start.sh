@@ -1,21 +1,21 @@
 #!/bin/bash
 
 # Wait for the PostgreSQL server to be available
-echo "Waiting for PostgreSQL..."
-while ! nc -z db 5432; do
-  sleep 1
+while ! nc -z $DB_HOST $DB_PORT_INTERNAL; do
+  echo "Waiting for database to be ready..."
+  sleep 3
 done
 echo "PostgreSQL started"
 
 # Check if the database exists
-DB_EXISTS=$(PGPASSWORD=$POSTGRES_PASSWORD psql -h db -U $POSTGRES_USER -lqt | cut -d \| -f 1 | grep -w $POSTGRES_DB | wc -l)
+DB_EXISTS=$(PGPASSWORD=$DB_PASSWORD psql -h $DB_HOST -U $DB_USER -lqt | cut -d \| -f 1 | grep -w $DB_NAME | wc -l)
 
 if [ $DB_EXISTS -eq 0 ]; then
-  echo "Database $POSTGRES_DB does not exist. Creating..."
-  PGPASSWORD=$POSTGRES_PASSWORD createdb -h db -U $POSTGRES_USER $POSTGRES_DB
-  echo "Database $POSTGRES_DB created."
+  echo "Database $DB_NAME does not exist. Creating..."
+  PGPASSWORD=$DB_PASSWORD createdb -h $DB_HOST -U $DB_USER $DB_NAME
+  echo "Database $DB_NAME created."
 else
-  echo "Database $POSTGRES_DB already exists. Skipping creation."
+  echo "Database $DB_NAME already exists. Skipping creation."
 fi
 
 # Create the database
@@ -31,7 +31,7 @@ python /app/manage.py createsuperuser --noinput # noinput flag to use environmen
 echo 'Fill database with questions from the PPBV'
 python /app/manage.py loaddata /app/backend/fixtures/questions.json
 
-# Run server on PORT 8000
-python /app/manage.py runserver 0.0.0.0:8000
+# Run server
+python /app/manage.py runserver 0.0.0.0:$WEB_PORT
 
 

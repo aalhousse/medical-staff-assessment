@@ -4,24 +4,26 @@ services:
   db:
     image: postgres:17
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+      - ./postgres_data:/var/lib/postgresql/data
     environment:
-      POSTGRES_DB: medical-staff-assessment
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: mypassword
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
     ports:
-      - "5433:5432" # map to 5433 on host to avoid conflict with local postgres
+      - "${DB_PORT_EXTERNAL}:${DB_PORT_INTERNAL}" # Map to 5433 on host to avoid conflict with local postgres
+    env_file:
+      - .env
 
   web:
     build: .
     volumes:
       - .:/app
     ports:
-      - "8000:8000"
+      - "${WEB_PORT}:${WEB_PORT}"
     depends_on:
       - db
     env_file:
-      - sample.env
+      - .env
 
 volumes:
   postgres_data:

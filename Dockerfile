@@ -20,8 +20,8 @@ RUN apt-get update && apt-get install -y dos2unix netcat-openbsd postgresql-clie
 # Copy the Django project files
 COPY . .
 
-# Expose the port the app runs on (default Django port is 8000)
-EXPOSE 8000
+# Expose the port the app runs on
+EXPOSE $WEB_PORT
 
 # Create a startup script
 COPY start.sh /start.sh
