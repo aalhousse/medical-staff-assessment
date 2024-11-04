@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-*ws96t)%3_m!eco*2x+te$e=81h@4!73ue(48m7au3^z3f7xmy
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['0.0.0.0']
+ALLOWED_HOSTS = ['0.0.0.0', 'localhost']
 
 
 # Application definition
@@ -77,8 +77,12 @@ WSGI_APPLICATION = 'medical_staff_assessment.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'medical-staff-assessment',
+        'USER': 'postgres',
+        'PASSWORD': 'mypassword',
+        'HOST': 'db',
+        'PORT': '5432',
     }
 }
 

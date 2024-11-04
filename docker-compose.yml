@@ -2,13 +2,15 @@ version: '3.8'
 
 services:
   db:
-    image: postgres:13
+    image: postgres:17
     volumes:
       - postgres_data:/var/lib/postgresql/data
     environment:
-      POSTGRES_DB: mydatabase
-      POSTGRES_USER: myuser
+      POSTGRES_DB: medical-staff-assessment
+      POSTGRES_USER: postgres
       POSTGRES_PASSWORD: mypassword
+    ports:
+      - "5433:5432" # map to 5433 on host to avoid conflict with local postgres
 
   web:
     build: .
