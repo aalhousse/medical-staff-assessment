@@ -4,8 +4,41 @@
   padding: 6px 12px;
 }
 
-html, body {
-  background: #EEEEEE;
+
+.header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 50px;
+            padding-bottom: 50px;
+        }
+
+main {
+ margin-top: 20px;
+ margin-left: 20px;
+ flex-grow: 1;
+ }
+
+body {
+background: #EEEEEE;
   color: #111111;
   margin: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Makes the body full height of the viewport */
+    margin: 0;
+}
+body {
+    display: grid;
+    grid-template-rows: auto 1fr auto; /* Header, main, footer */
+    min-height: 100vh;
+    margin: 0;
+}
+
+header, footer {
+    padding: 10px;
+}
+
+main {
+    padding: 20px;
 }

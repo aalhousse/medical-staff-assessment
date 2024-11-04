@@ -1,0 +1,197 @@
+{% extends 'frontend/baseHTML.html' %}
+{% block title %}
+Hospital Stations Overview - Version 2
+{% endblock %}
+{% block extra_css %}
+ <style>
+    .station-card {
+      transition: all 0.3s ease;
+      position: relative;
+    }
+    .station-card:hover {
+      transform: translateY(-2px);
+    }
+    .station-card.selected {
+      border: 2px solid rgb(59, 130, 246);
+      background: rgba(59, 130, 246, 0.02);
+    }
+    .station-card.selected::before {
+      content: '✓';
+      position: absolute;
+      top: -10px;
+      right: -10px;
+      width: 25px;
+      height: 25px;
+      background: rgb(59, 130, 246);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: bold;
+      border: 2px solid white;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .station-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 1.5rem;
+      padding: 1.5rem;
+      background: #f5f5f5;
+    }
+    .station-number {
+      background: rgba(59, 130, 246, 0.1);
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      color: rgb(59, 130, 246);
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+    .selected .station-number {
+      background: rgb(59, 130, 246);
+      color: white;
+    }
+    .patient-count {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: #4B5563;
+    }
+    .select-button {
+      background: rgba(59, 130, 246, 0.1);
+      color: rgb(59, 130, 246);
+      transition: all 0.2s ease;
+      padding: 0.5rem 1rem;
+      border-radius: 0.75rem;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+    .select-button:hover {
+      background: rgba(59, 130, 246, 0.2);
+    }
+    .selected .select-button {
+      background: rgb(59, 130, 246);
+      color: white;
+    }
+    .station-icon {
+      width: 20px;
+      height: 20px;
+      fill: currentColor;
+    }
+    .status-badge {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      font-size: 12px;
+      padding: 4px 8px;
+      border-radius: 12px;
+      background: rgba(59, 130, 246, 0.1);
+      color: rgb(59, 130, 246);
+      display: none;
+    }
+    .selected .status-badge {
+      display: block;
+    }
+</style>
+{% endblock %}
+<body style="background: #f5f5f5; margin: 0; font-family: system-ui, -apple-system, sans-serif;">
+{% block content %}
+<div class="station-grid">
+    <div class="station-card bg-white p-6 rounded-2xl shadow-lg border border-gray-100">
+        <span class="status-badge">Aktiv</span>
+        <div class="space-y-4">
+            <div class="flex items-center space-x-3">
+                <div class="station-number">
+                    <span>S1</span>
+                </div>
+                <h3 class="text-xl font-bold text-gray-800">Station 1</h3>
+            </div>
+
+            <div class="patient-count">
+                <svg class="station-icon text-blue-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="9" cy="7" r="4"></circle>
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                </svg>
+                <span class="text-sm">Patientanzahl</span>
+                <span class="font-bold">10</span>
+            </div>
+
+
+            <div class="pt-2">
+                <button class="select-button">
+                    <span>Auswählen</span>
+                    <svg class="station-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 18l6-6-6-6"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="station-card bg-white p-6 rounded-2xl shadow-lg border border-gray-100">
+        <span class="status-badge">Aktiv</span>
+        <div class="space-y-4">
+            <div class="flex items-center space-x-3">
+                <div class="station-number">
+                    <span>S2</span>
+                </div>
+                <h3 class="text-xl font-bold text-gray-800">Station 2</h3>
+            </div>
+            <div class="patient-count">
+                <svg class="station-icon text-blue-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="9" cy="7" r="4"></circle>
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                </svg>
+                <span class="text-sm">Patientanzahl</span>
+                <span class="font-bold">10</span>
+            </div>
+            <div class="pt-2">
+                <button class="select-button">
+                    <span>Auswählen</span>
+                    <svg class="station-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 18l6-6-6-6"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const cards = document.querySelectorAll('.station-card');
+      cards.forEach(card => {
+        card.addEventListener('click', function() {
+          // Remove selected class from all cards
+          cards.forEach(c => c.classList.remove('selected'));
+          // Add selected class to clicked card
+          this.classList.add('selected');
+
+          // Update button text
+          const btn = this.querySelector('.select-button span');
+          cards.forEach(c => {
+            const btnText = c.querySelector('.select-button span');
+            btnText.textContent = 'Auswählen';
+          });
+          btn.textContent = 'Ausgewählt';
+        });
+      });
+    });
+</script>
+{% endblock %}
+</body>
+</html>
