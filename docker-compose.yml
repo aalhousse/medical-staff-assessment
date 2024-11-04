@@ -10,7 +10,7 @@ services:
       POSTGRES_USER: ${DB_USER}
       POSTGRES_PASSWORD: ${DB_PASSWORD}
     ports:
-      - "${DB_PORT_EXTERNAL}:${DB_PORT_INTERNAL}" # Map to 5433 on host to avoid conflict with local postgres
+      - "${DB_PORT_EXTERNAL}:${DB_PORT_INTERNAL}"
     env_file:
       - .env
 
