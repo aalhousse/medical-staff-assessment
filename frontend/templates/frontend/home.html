@@ -1,18 +1,11 @@
-<!-- frontend/templates/frontend/home.html -->
+<!-- frontend/home.html -->
+{% extends 'frontend/base.html'%}
 
-<!DOCTYPE html>
-{% load static %}
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Frontend Home</title>
-    <link rel="stylesheet" href="{% static 'frontend/css/style.css' %}">
-</head>
-<body>
-    <div class="card" style="margin: 6px 12px">
-        <h1>Welcome to the Frontend!</h1>
-        <p>This is a sample template for the frontend app.</p>
-    </div>
-</body>
-</html>
+{% block title %}Frontend Home{% endblock %}
+
+{% block content %}
+<div class="card" style="margin: 6px 12px">
+    <h1>Welcome to the Frontend!</h1>
+    <p>This is a sample template for the frontend app.</p>
+</div>
+{% endblock %}
