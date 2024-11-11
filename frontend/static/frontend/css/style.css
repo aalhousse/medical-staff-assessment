@@ -60,6 +60,7 @@ aside {
   justify-content: flex-start;
   align-items: flex-start;
   display: inline-flex;
+  z-index: 0;
 }
 
 .aside-item {
@@ -87,7 +88,6 @@ aside {
 main {
   flex: 1;
   padding: 24px;
-  justify-content: space-between;
   align-items: flex-start;
   gap: 24px;
   display: flex;
