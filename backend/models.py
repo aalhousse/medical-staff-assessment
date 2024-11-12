@@ -29,8 +29,8 @@ class CareServiceOption(models.Model):
 
     id = models.IntegerField(primary_key=True)
     field = models.ForeignKey('CareServiceField', on_delete=models.CASCADE)
-    severity = models.IntegerField()  # 1-4 the degree of help need, higher means more help
     category = models.ForeignKey('CareServiceCategory', on_delete=models.CASCADE)
+    severity = models.IntegerField()  # 1-4 the degree of help need, higher means more help
     list_index = models.IntegerField()  # Index of the questions within the filed, category and severity list
     description = models.TextField()  # Content of the question
 
@@ -91,6 +91,9 @@ class Patient(models.Model):
     id = models.IntegerField(primary_key=True)  # The patients ID provided by the hospital
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
+    date_of_birth = models.DateField()
+    weight = models.FloatField()
+    height = models.FloatField()
 
     def __str__(self):
         return f"{self.first_name} {self.last_name}"
