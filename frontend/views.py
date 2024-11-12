@@ -6,10 +6,14 @@ def home(request):
     return render(request, 'frontend/home.html')
 
 
+def analysis(request):
+    return render(request, 'frontend/analysis.html')
+
+
 def stations(request):
     # all_stations = Station.objects.all()  # Retrieve all stations from the database
     all_stations = [
-        Station(name=f'Station {i}', is_intensive_care=False, is_child_care_unit=False,
+        Station(id=i, name=f'Station {i}', is_intensive_care=False, is_child_care_unit=False,
                 patients_per_caregiver_ratio=1.5 + i * 0.1)
         for i in range(1, 11)
     ]
@@ -18,3 +22,19 @@ def stations(request):
         'stations': all_stations
     }
     return render(request, 'frontend/stations.html', context)
+
+
+def station_patient_list(request, id):
+    context = {
+        'id': id
+    }
+    return render(request, 'frontend/station_patient_list.html', context)
+
+
+def classification(request, id, patient_id, date):
+    context = {
+        'id': id,
+        'patient_id': patient_id,
+        'date': date  # TODO parse and validate this
+    }
+    return render(request, 'frontend/classification.html', context)
