@@ -28,6 +28,7 @@ class CareServiceOption(models.Model):
      according to the PPBV."""
 
     id = models.IntegerField(primary_key=True)
+    name = models.CharField(max_length=200)  # The name of the CareServiceOption
     field = models.ForeignKey('CareServiceField', on_delete=models.CASCADE)
     category = models.ForeignKey('CareServiceCategory', on_delete=models.CASCADE)
     severity = models.IntegerField()  # 1-4 the degree of help need, higher means more help

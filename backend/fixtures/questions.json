@@ -1,829 +1,896 @@
 [
   {
-    "model": "backend.CareServices",
+    "model":"backend.CareServiceField",
+    "pk":1,
+    "fields":{
+      "short": "A",
+      "name":"Allgemeine Pflege"
+    }
+  },
+  {
+    "model":"backend.CareServiceField",
+    "pk":2,
+    "fields":{
+      "short": "S",
+      "name":"Spezielle Pflege"
+    }
+  },
+
+  {
+    "model":"backend.CareServiceCategory",
+    "pk":1,
+    "fields":{
+      "name":"Körperpflege"
+    }
+  },
+  {
+    "model": "backend.CareServiceCategory",
+    "pk": 2,
+    "fields": {
+      "name": "Ernährung"
+    }
+  },
+  {
+    "model": "backend.CareServiceCategory",
+    "pk": 3,
+    "fields": {
+      "name": "Ausscheidung"
+    }
+  },
+  {
+    "model":"backend.CareServiceCategory",
+    "pk":4,
+    "fields":{
+      "name":"Mobilisation und Positionswechsel"
+    }
+  },
+  {
+    "model": "backend.CareServiceCategory",
+    "pk": 5,
+    "fields": {
+      "name": "Leistungen im Zusammenhang mit Operationen, Invasiven Maßnahmen, Akuten Krankheitsphasen"
+    }
+  },
+  {
+    "model": "backend.CareServiceCategory",
+    "pk": 6,
+    "fields": {
+      "name": "Leistungen im Zusammenhang mit medikamentöser Versorgung"
+    }
+  },
+  {
+    "model": "backend.CareServiceCategory",
+    "pk": 7,
+    "fields": {
+      "name": "Leistungen im Zusammenhang mit Wund- und Hautbehandlung"
+    }
+  },
+
+  {
+    "model": "backend.CareServiceOption",
     "pk": 1,
     "fields": {
       "name": "A-koerperpflege-1-1",
-      "field": "A",
-      "category": "Körperpflege",
+      "field": 1,
+      "category": 1,
       "severity": 1,
-      "list-index": 1,
+      "list_index": 1,
       "description": "Alle Patienten, die nicht A2, A3 oder A4 zugeordnet werden."
     }
   },
   {
-    "model": "backend.CareServices",
+    "model": "backend.CareServiceOption",
     "pk": 2,
     "fields": {
       "name": "A-koerperpflege-2-1",
-      "field": "A",
-      "category": "Körperpflege",
+      "field": 1,
+      "category": 1,
       "severity": 2,
-      "list-index": 1,
+      "list_index": 1,
       "description": "Hilfe bei überwiegend selbständiger Körperpflege"
     }
   },
   {
-    "model": "backend.CareServices",
+    "model": "backend.CareServiceOption",
     "pk": 3,
     "fields": {
       "name": "A-koerperpflege-2-2",
-      "field": "A",
-      "category": "Körperpflege",
+      "field": 1,
+      "category": 1,
       "severity": 2,
-      "list-index": 2,
+      "list_index": 2,
       "description": "Patient bedarf der Unterstützung, um dann selbständig die Körperpflege durchführen zu können: Körperpflegemittel vor-/nachbereiten, Hilfe bei Teilkörperwäsche, Übernahme wesentlicher Teile der Körperpflege (z. B. Haar-/Nagelpflege, Rasur, eincremen)"
     }
   },
   {
-    "model": "backend.CareServices",
+    "model": "backend.CareServiceOption",
     "pk": 4,
     "fields": {
       "name": "A-koerperpflege-3-1",
-      "field": "A",
-      "category": "Körperpflege",
+      "field": 1,
+      "category": 1,
       "severity": 3,
-      "list-index": 1,
+      "list_index": 1,
       "description": "Überwiegende oder vollständige Übernahme der Körperpflege."
     }
   },
   {
-    "model": "backend.CareServices",
+    "model": "backend.CareServiceOption",
     "pk": 5,
     "fields": {
       "name": "A-koerperpflege-3-2",
-      "field": "A",
-      "category": "Körperpflege",
+      "field": 1,
+      "category": 1,
       "severity": 3,
-      "list-index": 2,
+      "list_index": 2,
       "description": "Der Patient kann keine oder nur wenige Handgriffe selbst durchführen."
     }
   },
   {
-    "model": "backend.CareServices",
+    "model": "backend.CareServiceOption",
     "pk": 6,
     "fields": {
       "name": "A-koerperpflege-3-3",
-      "field": "A",
-      "category": "Körperpflege",
+      "field": 1,
+      "category": 1,
       "severity": 3,
-      "list-index": 3,
+      "list_index": 3,
       "description": "Der Patient wird zur selbständigen Körperpflege trainiert: Ganzkörperwäsche/Baden/Duschen durchführen, Zur Körperpflege anleiten/überwachen."
     }
   },
   {
-    "model": "backend.CareServices",
+    "model": "backend.CareServiceOption",
     "pk": 7,
     "fields": {
       "name": "A-koerperpflege-3-4",
-      "field": "A",
-      "category": "Körperpflege",
+      "field": 1,
+      "category": 1,
       "severity": 3,
-      "list-index": 4,
+      "list_index": 4,
       "description": "Ständige Anwesenheit einer Pflegeperson notwendig."
     }
   },
   {
-    "model": "backend.CareServices",
+    "model": "backend.CareServiceOption",
     "pk": 8,
     "fields": {
       "name": "A-koerperpflege-4-1",
-      "field": "A",
-      "category": "Körperpflege",
+      "field": 1,
+      "category": 1,
       "severity": 4,
-      "list-index": 1,
+      "list_index": 1,
       "description": "ICD-U50.4, U50.5 oder U51.2 liegt vor und vollständige Übernahme (vÜ) oder Anleitung (a) zur Körperpflege durch die Pflege und in Verbindung mit zusätzlichen Aspekten."
     }
   },
   {
-    "model": "backend.CareServices",
+    "model": "backend.CareServiceOption",
     "pk": 9,
     "fields": {
       "name": "A-koerperpflege-4-2",
-      "field": "A",
-      "category": "Körperpflege",
+      "field": 1,
+      "category": 1,
       "severity": 4,
-      "list-index": 2,
+      "list_index": 2,
       "description": "Ganzkörperwaschung (GKW) in vÜ, a 1 x täglich und 4 x täglich Teilkörperwaschung des Oberkörpers oder des Unterkörpers in vÜ, a durchführen."
     }
   },
   {
-    "model": "backend.CareServices",
+    "model": "backend.CareServiceOption",
     "pk": 10,
     "fields": {
       "name": "A-koerperpflege-4-3",
-      "field": "A",
-      "category": "Körperpflege",
+      "field": 1,
+      "category": 1,
       "severity": 4,
-      "list-index": 3,
+      "list_index": 3,
       "description": "GKW in vÜ, a 2 x täglich durchführen."
     }
   },
   {
-    "model": "backend.CareServices",
+    "model": "backend.CareServiceOption",
     "pk": 11,
     "fields": {
       "name": "A-koerperpflege-4-4",
-      "field": "A",
-      "category": "Körperpflege",
+      "field": 1,
+      "category": 1,
       "severity": 4,
-      "list-index": 4,
+      "list_index": 4,
       "description": "GKW in vÜ mit zwei Pflegepersonen durchführen (pflegefachlich begründet)."
     }
   },
   {
-    "model": "backend.CareServices",
+    "model": "backend.CareServiceOption",
     "pk": 12,
     "fields": {
       "name": "A-koerperpflege-4-5",
-      "field": "A",
-      "category": "Körperpflege",
+      "field": 1,
+      "category": 1,
       "severity": 4,
-      "list-index": 5,
+      "list_index": 5,
       "description": "Therapeutische Ganzkörperwaschung/-pflege nach folgenden Konzepten durchführen: Bobath-Konzept, NDT-Konzept, MRT (Motor Relearning Programme), Basalstimulierend belebende GKW, Basalstimulierend beruhigende GKW, Sonstige basalstimulierende GKW, Andere einrichtungsspezifische Konzepte."
     }
   },
   {
-    "model": "backend.CareServices",
+    "model": "backend.CareServiceOption",
     "pk": 13,
     "fields": {
       "name": "A-ernaehrung-1-1",
-      "field": "A",
-      "category": "Ernährung",
+      "field": 1,
+      "category": 2,
       "severity": 1,
-      "list-index": 1,
+      "list_index": 1,
       "description": "Alle Patienten, die nicht A2, A3 oder A4 zugeordnet werden."
     }
   },
   {
-    "model": "backend.CareServices",
+    "model": "backend.CareServiceOption",
     "pk": 14,
     "fields": {
       "name": "A-ernaehrung-2-1",
-      "field": "A",
-      "category": "Ernährung",
+      "field": 1,
+      "category": 2,
       "severity": 2,
-      "list-index": 1,
+      "list_index": 1,
       "description": "Nahrungsaufbereitung/Sondennahrung."
     }
   },
   {
-    "model": "backend.CareServices",
+    "model": "backend.CareServiceOption",
     "pk": 15,
     "fields": {
       "name": "A-ernaehrung-2-2",
-      "field": "A",
-      "category": "Ernährung",
+      "field": 1,
+      "category": 2,
       "severity": 2,
-      "list-index": 2,
+      "list_index": 2,
       "description": "Patient ist in der Lage, nach individueller Vorbereitung der Mahlzeit, diese einzunehmen, Mahlzeiten mundgerecht zubereiten (z. B. zerkleinern, Schnitten schmieren), Getränke mit Trinkhilfe bereitstellen, Verabreichung von Sondennahrung (Schwerkraft oder mit Ernährungs-Pumpe)."
     }
   },
   {
-    "model": "backend.CareServices",
+    "model": "backend.CareServiceOption",
     "pk": 16,
     "fields": {
       "name": "A-ernaehrung-3-1",
-      "field": "A",
-      "category": "Ernährung",
+      "field": 1,
+      "category": 2,
       "severity": 3,
-      "list-index": 1,
+      "list_index": 1,
       "description": "Hilfe bei der Nahrungsaufnahme/Sondennahrung."
     }
   },
   {
-    "model": "backend.CareServices",
+    "model": "backend.CareServiceOption",
     "pk": 17,
     "fields": {
       "name": "A-ernaehrung-3-2",
-      "field": "A",
-      "category": "Ernährung",
+      "field": 1,
+      "category": 2,
       "severity": 3,
-      "list-index": 2,
+      "list_index": 2,
       "description": "Patienten sind ohne Hilfestellung während der Mahlzeiten nicht in der Lage, diese einzunehmen, Nahrung und Getränke verabreichen, Trink- und Esstraining (weniger als 4 x täglich), Verabreichung der Sondennahrung (Bolusapplikation, weniger als 7 x täglich)."
     }
   },
   {
-    "model": "backend.CareServices",
+    "model": "backend.CareServiceOption",
     "pk": 18,
     "fields": {
       "name": "A-ernaehrung-3-3",
-      "field": "A",
-      "category": "Ernährung",
+      "field": 1,
+      "category": 2,
       "severity": 3,
-      "list-index": 3,
+      "list_index": 3,
       "description": "Ständige Anwesenheit einer Pflegeperson ist notwendig."
     }
   },
   {
-    "model": "backend.CareServices",
+    "model": "backend.CareServiceOption",
     "pk": 19,
     "fields": {
       "name": "A-ernaehrung-4-1",
-      "field": "A",
-      "category": "Ernährung",
+      "field": 1,
+      "category": 2,
       "severity": 4,
-      "list-index": 1,
+      "list_index": 1,
       "description": "Volle Übernahme der oralen Nahrungs- und Flüssigkeitsverabreichung."
     }
   },
   {
-    "model": "backend.CareServices",
+    "model": "backend.CareServiceOption",
     "pk": 20,
     "fields": {
       "name": "A-ernaehrung-4-2",
-      "field": "A",
-      "category": "Ernährung",
+      "field": 1,
+      "category": 2,
       "severity": 4,
-      "list-index": 2,
+      "list_index": 2,
       "description": "Ess- und Trinktraining (mind. 4 x täglich)."
     }
   },
   {
-    "model": "backend.CareServices",
+    "model": "backend.CareServiceOption",
     "pk": 21,
     "fields": {
       "name": "A-ernaehrung-4-3",
-      "field": "A",
-      "category": "Ernährung",
+      "field": 1,
+      "category": 2,
       "severity": 4,
-      "list-index": 3,
+      "list_index": 3,
       "description": "Bolusapplikation von Sondennahrung und/oder Flüssigkeit (mind. 7 x täglich)."
     }
   },
   {
-    "model": "backend.CareServices",
+    "model": "backend.CareServiceOption",
     "pk": 22,
     "fields": {
       "name": "A-ausscheidung-1-1",
-      "field": "A",
-      "category": "Ausscheidung",
+      "field": 1,
+      "category": 3,
       "severity": 1,
-      "list-index": 1,
+      "list_index": 1,
       "description": "Alle Patienten, die nicht A2, A3 oder A4 zugeordnet werden."
     }
   },
   {
-    "model": "backend.CareServices",
+    "model": "backend.CareServiceOption",
     "pk": 23,
     "fields": {
       "name": "A-ausscheidung-2-1",
-      "field": "A",
-      "category": "Ausscheidung",
+      "field": 1,
+      "category": 3,
       "severity": 2,
-      "list-index": 1,
+      "list_index": 1,
       "description": "Unterstützung zur kontrollierten Blasen-/Darmentleerung."
     }
   },
   {
-    "model": "backend.CareServices",
+    "model": "backend.CareServiceOption",
     "pk": 24,
     "fields": {
       "name": "A-ausscheidung-2-2",
-      "field": "A",
-      "category": "Ausscheidung",
+      "field": 1,
+      "category": 3,
       "severity": 2,
-      "list-index": 2,
+      "list_index": 2,
       "description": "Patient kann Ausscheidung kontrollieren, aber nicht ohne Hilfe verrichten, Ausscheidungsunterstützung mit z. B. Toilettenstuhl, Steckbecken, Urinflasche, Begleitung zur Toilette."
     }
   },
   {
-    "model": "backend.CareServices",
+    "model": "backend.CareServiceOption",
     "pk": 25,
     "fields": {
       "name": "A-ausscheidung-2-3",
-      "field": "A",
-      "category": "Ausscheidung",
+      "field": 1,
+      "category": 3,
       "severity": 2,
-      "list-index": 3,
+      "list_index": 3,
       "description": "Entleeren, Wechseln von Katheter- oder Stomabeutel."
     }
   },
   {
-    "model": "backend.CareServices",
+    "model": "backend.CareServiceOption",
     "pk": 26,
     "fields": {
       "name": "A-ausscheidung-2-4",
-      "field": "A",
-      "category": "Ausscheidung",
+      "field": 1,
+      "category": 3,
       "severity": 2,
-      "list-index": 4,
+      "list_index": 4,
       "description": "Versorgung bei mehrmaligem Erbrechen (Patient/Umgebung)."
     }
   },
   {
-    "model": "backend.CareServices",
+    "model": "backend.CareServiceOption",
     "pk": 27,
     "fields": {
       "name": "A-ausscheidung-2-5",
-      "field": "A",
-      "category": "Ausscheidung",
+      "field": 1,
+      "category": 3,
       "severity": 2,
-      "list-index": 5,
+      "list_index": 5,
       "description": "Aufwendiges Versorgen bei starkem Schwitzen (z. B. Wäschewechsel)."
     }
   },
   {
-    "model": "backend.CareServices",
+    "model": "backend.CareServiceOption",
     "pk": 28,
     "fields": {
       "name": "A-ausscheidung-3-1",
-      "field": "A",
-      "category": "Ausscheidung",
+      "field": 1,
+      "category": 3,
       "severity": 3,
-      "list-index": 1,
+      "list_index": 1,
       "description": "Überwiegende oder vollständige Übernahme der Maßnahmen im Kontext der Ausscheidung durch die Pflegeperson, d. h. Erforderlichkeit mindestens einer der folgenden Maßnahmen."
     }
   },
   {
-    "model": "backend.CareServices",
+    "model": "backend.CareServiceOption",
     "pk": 29,
     "fields": {
       "name": "A-ausscheidung-3-2",
-      "field": "A",
-      "category": "Ausscheidung",
+      "field": 1,
+      "category": 3,
       "severity": 3,
-      "list-index": 2,
+      "list_index": 2,
       "description": "Wechsel von Inkontinenzmaterialien in vÜ, a mind. 3 x täglich durchführen, Ausscheidungsunterstützung auf der Toilette in vÜ, a mind. 3 x täglich, Zur selbständigen Stomaversorgung anleiten, Digitale Ausräumung des Enddarms durchführen, Reinigungseinlauf durchführen, Mind. 3 x täglich Intimbereich nach Stuhlausscheidung in vÜ reinigen bei Durchfall bzw. Stuhlinkontinenz."
     }
   },
   {
-    "model": "backend.CareServices",
+    "model": "backend.CareServiceOption",
     "pk": 30,
     "fields": {
       "name": "A-ausscheidung-3-3",
-      "field": "A",
-      "category": "Ausscheidung",
+      "field": 1,
+      "category": 3,
       "severity": 3,
-      "list-index": 3,
+      "list_index": 3,
       "description": "Kleiderwechsel oder Wäschewechsel im Kontext von starkem Schwitzen durchführen mind. 3 x täglich."
     }
   },
   {
-    "model": "backend.CareServices",
+    "model": "backend.CareServiceOption",
     "pk": 31,
     "fields": {
       "name": "A-ausscheidung-4-1",
-      "field": "A",
-      "category": "Ausscheidung",
+      "field": 1,
+      "category": 3,
       "severity": 4,
-      "list-index": 1,
+      "list_index": 1,
       "description": "CD-U50.4-, U50.5 oder U51.2 liegt vor und vÜ der Maßnahmen im Kontext der Ausscheidung durch die Pflege in Verbindung mit zusätzlichen Aspekten."
     }
   },
   {
-    "model": "backend.CareServices",
+    "model": "backend.CareServiceOption",
     "pk": 32,
     "fields": {
       "name": "A-ausscheidung-4-2",
-      "field": "A",
-      "category": "Ausscheidung",
+      "field": 1,
+      "category": 3,
       "severity": 4,
-      "list-index": 2,
+      "list_index": 2,
       "description": "Miktion/Defäkation im Bett mind. 4 x täglich mit Steckbecken/Urinflasche/Inkontinenzhose in vÜ, a."
     }
   },
   {
-    "model": "backend.CareServices",
+    "model": "backend.CareServiceOption",
     "pk": 33,
     "fields": {
       "name": "A-ausscheidung-4-3",
-      "field": "A",
-      "category": "Ausscheidung",
+      "field": 1,
+      "category": 3,
       "severity": 4,
-      "list-index": 3,
+      "list_index": 3,
       "description": "Miktion/Defäkation im Bett, auf dem Toilettenstuhl oder auf der Toilette mit zwei Pflegepersonen (pflegefachlich begründet)."
     }
   },
   {
-    "model": "backend.CareServices",
+    "model": "backend.CareServiceOption",
     "pk": 34,
     "fields": {
       "name": "A-ausscheidung-4-4",
-      "field": "A",
-      "category": "Ausscheidung",
+      "field": 1,
+      "category": 3,
       "severity": 4,
-      "list-index": 4,
+      "list_index": 4,
       "description": "Kontinenztraining durchführen; Maßnahmen sind abhängig von der Pflegediagnose, geeignete evidenzbasierte Handlungskonzepte zur Kontinenzförderung sind entsprechend der Kontinenz-Form umzusetzen."
     }
   },
   {
-    "model": "backend.CareServices",
+    "model": "backend.CareServiceOption",
     "pk": 35,
     "fields": {
       "name": "A-mobilisation-1-1",
-      "field": "A",
-      "category": "Mobilisation und Positionswechsel",
+      "field": 1,
+      "category": 4,
       "severity": 1,
-      "list-index": 1,
+      "list_index": 1,
       "description": "Alle Patienten, die nicht A2, A3 oder A4 zugeordnet werden."
     }
   },
   {
-    "model": "backend.CareServices",
+    "model": "backend.CareServiceOption",
     "pk": 36,
     "fields": {
       "name": "A-mobilisation-2-1",
-      "field": "A",
-      "category": "Mobilisation und Positionswechsel",
+      "field": 1,
+      "category": 4,
       "severity": 2,
-      "list-index": 1,
+      "list_index": 1,
       "description": "Einfacher Positionswechsel und Mobilisation"
     }
   },
   {
-    "model": "backend.CareServices",
+    "model": "backend.CareServiceOption",
     "pk": 37,
     "fields": {
       "name": "A-mobilisation-2-2",
-      "field": "A",
-      "category": "Mobilisation und Positionswechsel",
+      "field": 1,
+      "category": 4,
       "severity": 2,
-      "list-index": 2,
+      "list_index": 2,
       "description": "Patient benötigt Hilfe/Unterstützung bei Mobilisation/Positionswechsel"
     }
   },
   {
-    "model": "backend.CareServices",
+    "model": "backend.CareServiceOption",
     "pk": 38,
     "fields": {
       "name": "A-mobilisation-2-3",
-      "field": "A",
-      "category": "Mobilisation und Positionswechsel",
+      "field": 1,
+      "category": 4,
       "severity": 2,
-      "list-index": 3,
+      "list_index": 3,
       "description": "Patient ist überwiegend in der Lage, sich im Bett zu drehen, benötigt Unterstützung beim Aufstehen"
     }
   },
   {
-    "model": "backend.CareServices",
+    "model": "backend.CareServiceOption",
     "pk": 39,
     "fields": {
       "name": "A-mobilisation-3-1",
-      "field": "A",
-      "category": "Mobilisation und Positionswechsel",
+      "field": 1,
+      "category": 4,
       "severity": 3,
-      "list-index": 1,
+      "list_index": 1,
       "description": "Überwiegende oder vollständige Übernahme des Positionswechsels, bzw. Mobilisation durch die Pflegeperson, d.h. es ist insgesamt 6 x tägl. eine der nachfolgenden Maßnahmen zu planen."
     }
   },
   {
-    "model": "backend.CareServices",
+    "model": "backend.CareServiceOption",
     "pk": 40,
     "fields": {
       "name": "A-mobilisation-3-2",
-      "field": "A",
-      "category": "Mobilisation und Positionswechsel",
+      "field": 1,
+      "category": 4,
       "severity": 3,
-      "list-index": 2,
+      "list_index": 2,
       "description": "Positionswechsel im Bett/Rollstuhl durchführen, Mobilisierungsmaßnahmen wie Standtraining, Gehtraining in vÜ, a, Transfer z. B. vom Bett zum Stuhl/Rollstuhl/an den Tisch mind. vÜ, a unterstützen"
     }
   },
   {
-    "model": "backend.CareServices",
+    "model": "backend.CareServiceOption",
     "pk": 41,
     "fields": {
       "name": "A-mobilisation-3-3",
-      "field": "A",
-      "category": "Mobilisation und Positionswechsel",
+      "field": 1,
+      "category": 4,
       "severity": 3,
-      "list-index": 3,
+      "list_index": 3,
       "description": "Patient ist immobil"
     }
   },
   {
-    "model": "backend.CareServices",
+    "model": "backend.CareServiceOption",
     "pk": 42,
     "fields": {
       "name": "A-mobilisation-3-4",
-      "field": "A",
-      "category": "Mobilisation und Positionswechsel",
+      "field": 1,
+      "category": 4,
       "severity": 3,
-      "list-index": 4,
+      "list_index": 4,
       "description": "Patient ist überwiegend nicht in der Lage, sich im Bett zu drehen/aufzustehen"
     }
   },
   {
-    "model": "backend.CareServices",
+    "model": "backend.CareServiceOption",
     "pk": 43,
     "fields": {
       "name": "A-mobilisation-4-1",
-      "field": "A",
-      "category": "Mobilisation und Positionswechsel",
+      "field": 1,
+      "category": 4,
       "severity": 4,
-      "list-index": 1,
+      "list_index": 1,
       "description": "Volle Übernahme des Positionswechsels und der Mobilisation durch die Pflegeperson in Verbindung mit zusätzlichen Aspekten."
     }
   },
   {
-    "model": "backend.CareServices",
+    "model": "backend.CareServiceOption",
     "pk": 44,
     "fields": {
       "name": "A-mobilisation-4-2",
-      "field": "A",
-      "category": "Mobilisation und Positionswechsel",
+      "field": 1,
+      "category": 4,
       "severity": 4,
-      "list-index": 2,
+      "list_index": 2,
       "description": "Positionswechsel im Bett, auf dem Toilettenstuhl oder im Rollstuhl mit zwei Pflegepersonen (pflegefachlich begründet)"
     }
   },
   {
-    "model": "backend.CareServices",
+    "model": "backend.CareServiceOption",
     "pk": 45,
     "fields": {
       "name": "A-mobilisation-4-3",
-      "field": "A",
-      "category": "Mobilisation und Positionswechsel",
+      "field": 1,
+      "category": 4,
       "severity": 4,
-      "list-index": 3,
+      "list_index": 3,
       "description": "Kontinuierliche Mobilisierungsmaßnahmen wie Standtraining und Gehtraining in vÜ, a"
     }
   },
   {
-    "model": "backend.CareServices",
+    "model": "backend.CareServiceOption",
     "pk": 46,
     "fields": {
       "name": "S-zusammenhangsleistungen-1-1",
-      "field": "S",
-      "category": "Leistungen im Zusammenhang mit Operationen, Invasiven Maßnahmen, Akuten Krankheitsphasen",
+      "field": 2,
+      "category": 5,
       "severity": 1,
-      "list-index": 1,
+      "list_index": 1,
       "description": "Alle Patienten, die nicht S2, S3 oder S4 zugeordnet werden."
     }
   },
   {
-    "model": "backend.CareServices",
+    "model": "backend.CareServiceOption",
     "pk": 47,
     "fields": {
       "name": "S-zusammenhangsleistungen-2-1",
-      "field": "S",
-      "category": "Leistungen im Zusammenhang mit Operationen, Invasiven Maßnahmen, Akuten Krankheitsphasen",
+      "field": 2,
+      "category": 5,
       "severity": 2,
-      "list-index": 1,
+      "list_index": 1,
       "description": "Beobachten des Patienten und Kontrolle von mindestens 2 Parametern 1 4 – 6 x in 8 Std., wobei eine gleichmäßige Verteilung nicht nötig ist (es können auch z. B. 8 Werte in einer Std. erhoben werden). Die Parameter können zusammengezählt werden, aber es müssen mind. 2 Parameter sein und mind. 8 Messungen/Beobachtungen in 8 Std. Beispiele: 1 x Gewicht, 7 x Puls, 3 x BZ, 1 x ZVD, 2 x Temp., 2 x Puls."
     }
   },
   {
-    "model": "backend.CareServices",
+    "model": "backend.CareServiceOption",
     "pk": 48,
     "fields": {
       "name": "S-zusammenhangsleistungen-2-2",
-      "field": "S",
-      "category": "Leistungen im Zusammenhang mit Operationen, Invasiven Maßnahmen, Akuten Krankheitsphasen",
+      "field": 2,
+      "category": 5,
       "severity": 2,
-      "list-index": 2,
+      "list_index": 2,
       "description": "Aufwendiges Versorgen von Zu-/Ableitungs-/Absaugsystemen bedingt durch den Patientenzustand, Lage, System und Häufigkeit. Beispiele: Thoraxdrainage, Spülkatheter, Liquorableitung, Absaugen (mehr als 3 x tgl.), Legen von Magensonde, Blasenkatheter (ED/DK), ZVK, Hickmann-Katheter, Shaldon-Katheter, Wechsel des Behältnisses oder Ziehen von mind. zwei Drainagen, VAC-Pumpe, Trachealkanüle, Einlauf (aufwendiges Ablaufsystem)."
     }
   },
   {
-    "model": "backend.CareServices",
+    "model": "backend.CareServiceOption",
     "pk": 49,
     "fields": {
       "name": "S-zusammenhangsleistungen-3-1",
-      "field": "S",
-      "category": "Leistungen im Zusammenhang mit Operationen, Invasiven Maßnahmen, Akuten Krankheitsphasen",
+      "field": 2,
+      "category": 5,
       "severity": 3,
-      "list-index": 1,
+      "list_index": 1,
       "description": "Beobachten des Patienten und Kontrolle von mindestens 3 Parametern über 12 Std., wobei eine gleichmäßige Verteilung nicht nötig ist (es können auch z. B. 18 Werte in einer Std. erhoben werden). Die Parameter können zusammengezählt werden, aber es müssen mind. 3 Parameter sein und mind. 6 Messungen/Beobachtungen in 12 Std. Beispiele: 3 x BZ, 1 x ZVD, 2 x Temp., 6 x RR, 6 x Puls."
     }
   },
   {
-    "model": "backend.CareServices",
+    "model": "backend.CareServiceOption",
     "pk": 50,
     "fields": {
       "name": "S-zusammenhangsleistungen-3-2",
-      "field": "S",
-      "category": "Leistungen im Zusammenhang mit Operationen, Invasiven Maßnahmen, Akuten Krankheitsphasen",
+      "field": 2,
+      "category": 5,
       "severity": 3,
-      "list-index": 2,
+      "list_index": 2,
       "description": "Endotracheales Absaugen mehr als 4 x tgl."
     }
   },
   {
-    "model": "backend.CareServices",
+    "model": "backend.CareServiceOption",
     "pk": 51,
     "fields": {
       "name": "S-zusammenhangsleistungen-4-1",
-      "field": "S",
-      "category": "Leistungen im Zusammenhang mit Operationen, Invasiven Maßnahmen, Akuten Krankheitsphasen",
+      "field": 2,
+      "category": 5,
       "severity": 4,
-      "list-index": 1,
+      "list_index": 1,
       "description": "Es muss in mindestens zwei verschiedenen Leistungsbereichen je mindestens ein Zuordnungsmerkmal der Leistungsstufe S3 zutreffen"
     }
   },
   {
-    "model": "backend.CareServices",
+    "model": "backend.CareServiceOption",
     "pk": 52,
     "fields": {
       "name": "S-medikament-1-1",
-      "field": "S",
-      "category": "Leistungen im Zusammenhang mit medikamentöser Versorgung",
+      "field": 2,
+      "category": 6,
       "severity": 1,
-      "list-index": 1,
+      "list_index": 1,
       "description": "Alle Patienten, die nicht S2, S3 oder S4 zugeordnet werden."
     }
   },
   {
-    "model": "backend.CareServices",
+    "model": "backend.CareServiceOption",
     "pk": 53,
     "fields": {
       "name": "S-medikament-2-1",
-      "field": "S",
-      "category": "Leistungen im Zusammenhang mit medikamentöser Versorgung",
+      "field": 2,
+      "category": 6,
       "severity": 2,
-      "list-index": 1,
+      "list_index": 1,
       "description": "Kontinuierliche oder mehrfach wiederholte Infusionen/Transfusionen: 1 000 ml Infusionslösung während des Tagdienstes, Verabreichung von mind. 2 Kurz-Infusionen, Intravenöse Verabreichung von Zytostatika, wenn nicht fortlaufend beobachtet werden muss (trifft zu bei weniger aggressiven Zytostatika mit Verabreichungsdauer unter 2 Std. einschließlich Nachbeobachtung), Gaben von Transfusionen, Blutersatzprodukten."
     }
   },
   {
-    "model": "backend.CareServices",
+    "model": "backend.CareServiceOption",
     "pk": 54,
     "fields": {
       "name": "S-medikament-2-2",
-      "field": "S",
-      "category": "Leistungen im Zusammenhang mit medikamentöser Versorgung",
+      "field": 2,
+      "category": 6,
       "severity": 2,
-      "list-index": 2,
+      "list_index": 2,
       "description": "Inhalation/Atemhilfe geben mind. 3 x tgl."
     }
   },
   {
-    "model": "backend.CareServices",
+    "model": "backend.CareServiceOption",
     "pk": 55,
     "fields": {
       "name": "S-medikament-3-1",
-      "field": "S",
-      "category": "Leistungen im Zusammenhang mit medikamentöser Versorgung",
+      "field": 2,
+      "category": 6,
       "severity": 3,
-      "list-index": 1,
+      "list_index": 1,
       "description": "Kontinuierliche oder mehrfach wiederholte Infusionen/Transfusionen: Verabreichung von mind. 5 Kurz-Infusionen, Gaben von mind. 3 Transfusionen, Blutersatzprodukten."
     }
   },
   {
-    "model": "backend.CareServices",
+    "model": "backend.CareServiceOption",
     "pk": 56,
     "fields": {
       "name": "S-medikament-3-2",
-      "field": "S",
-      "category": "Leistungen im Zusammenhang mit medikamentöser Versorgung",
+      "field": 2,
+      "category": 6,
       "severity": 3,
-      "list-index": 2,
+      "list_index": 2,
       "description": "Fortlaufende Beobachtung und Betreuung bei schwerwiegenden Arzneimittelwirkungen."
     }
   },
   {
-    "model": "backend.CareServices",
+    "model": "backend.CareServiceOption",
     "pk": 57,
     "fields": {
       "name": "S-medikament-3-3",
-      "field": "S",
-      "category": "Leistungen im Zusammenhang mit medikamentöser Versorgung",
+      "field": 2,
+      "category": 6,
       "severity": 3,
-      "list-index": 3,
+      "list_index": 3,
       "description": "Arzneimittelgaben, die über einen Zeitraum von mehreren Stunden (mind. 2) einer Beobachtung/Betreuung bedürfen."
     }
   },
   {
-    "model": "backend.CareServices",
+    "model": "backend.CareServiceOption",
     "pk": 58,
     "fields": {
       "name": "S-medikament-3-4",
-      "field": "S",
-      "category": "Leistungen im Zusammenhang mit medikamentöser Versorgung",
+      "field": 2,
+      "category": 6,
       "severity": 3,
-      "list-index": 4,
+      "list_index": 4,
       "description": "Intravenöse Verabreichung von Zytostatika, wenn die Verabreichung einschließlich Nachbeobachtung den Zeitraum von 2 Std. überschreitet und in dieser Zeit eine engmaschige Beobachtung stattfinden muss."
     }
   },
   {
-    "model": "backend.CareServices",
+    "model": "backend.CareServiceOption",
     "pk": 59,
     "fields": {
       "name": "S-medikament-3-5",
-      "field": "S",
-      "category": "Leistungen im Zusammenhang mit medikamentöser Versorgung",
+      "field": 2,
+      "category": 6,
       "severity": 3,
-      "list-index": 5,
+      "list_index": 5,
       "description": "Intravenöse Insulingabe bei Blutzuckerkrisen."
     }
   },
   {
-    "model": "backend.CareServices",
+    "model": "backend.CareServiceOption",
     "pk": 60,
     "fields": {
       "name": "S-medikament-3-6",
-      "field": "S",
-      "category": "Leistungen im Zusammenhang mit medikamentöser Versorgung",
+      "field": 2,
+      "category": 6,
       "severity": 3,
-      "list-index": 6,
+      "list_index": 6,
       "description": "Verabreichung hochwirksamer Medikamente bei Herz-Kreislauf-Krisen."
     }
   },
   {
-    "model": "backend.CareServices",
+    "model": "backend.CareServiceOption",
     "pk": 51,
     "fields": {
       "name": "S-medikament-4-1",
-      "field": "S",
-      "category": "Leistungen im Zusammenhang mit medikamentöser Versorgung",
+      "field": 2,
+      "category": 6,
       "severity": 4,
-      "list-index": 1,
+      "list_index": 1,
       "description": "Es muss in mindestens zwei verschiedenen Leistungsbereichen je mindestens ein Zuordnungsmerkmal der Leistungsstufe S3 zutreffen"
     }
   },
   {
-    "model": "backend.CareServices",
+    "model": "backend.CareServiceOption",
     "pk": 52,
     "fields": {
       "name": "S-wundbehandlung-1-1",
-      "field": "S",
-      "category": "Leistungen im Zusammenhang mit Wund- und Hautbehandlung",
+      "field": 2,
+      "category": 7,
       "severity": 1,
-      "list-index": 1,
+      "list_index": 1,
       "description": "Alle Patienten, die nicht S2, S3 oder S4 zugeordnet werden."
     }
   },
   {
-    "model": "backend.CareServices",
+    "model": "backend.CareServiceOption",
     "pk": 53,
     "fields": {
       "name": "S-wundbehandlung-2-1",
-      "field": "S",
-      "category": "Leistungen im Zusammenhang mit Wund- und Hautbehandlung",
+      "field": 2,
+      "category": 7,
       "severity": 2,
-      "list-index": 1,
+      "list_index": 1,
       "description": "Aufwendiger Verbandwechsel (VW)."
     }
   },
   {
-    "model": "backend.CareServices",
+    "model": "backend.CareServiceOption",
     "pk": 54,
     "fields": {
       "name": "S-wundbehandlung-2-2",
-      "field": "S",
-      "category": "Leistungen im Zusammenhang mit Wund- und Hautbehandlung",
+      "field": 2,
+      "category": 7,
       "severity": 2,
-      "list-index": 2,
+      "list_index": 2,
       "description": "Behandlung großflächiger oder tiefer Wunden oder großer Hautareale."
     }
   },
   {
-    "model": "backend.CareServices",
+    "model": "backend.CareServiceOption",
     "pk": 55,
     "fields": {
       "name": "S-wundbehandlung-2-3",
-      "field": "S",
-      "category": "Leistungen im Zusammenhang mit Wund- und Hautbehandlung",
+      "field": 2,
+      "category": 7,
       "severity": 2,
-      "list-index": 3,
+      "list_index": 3,
       "description": "Einfacher Verbandswechsel mind. 2 x täglich."
     }
   },
   {
-    "model": "backend.CareServices",
+    "model": "backend.CareServiceOption",
     "pk": 56,
     "fields": {
       "name": "S-wundbehandlung-3-1",
-      "field": "S",
-      "category": "Leistungen im Zusammenhang mit Wund- und Hautbehandlung",
+      "field": 2,
+      "category": 7,
       "severity": 3,
-      "list-index": 1,
+      "list_index": 1,
       "description": "Aufwendiger Verbandwechsel mehrmals täglich (mind. 2 x)."
     }
   },
   {
-    "model": "backend.CareServices",
+    "model": "backend.CareServiceOption",
     "pk": 57,
     "fields": {
       "name": "S-wundbehandlung-3-2",
-      "field": "S",
-      "category": "Leistungen im Zusammenhang mit Wund- und Hautbehandlung",
+      "field": 2,
+      "category": 7,
       "severity": 3,
-      "list-index": 2,
+      "list_index": 2,
       "description": "Behandlung großflächiger oder tiefer Wunden oder großer Hautareale mehrmals täglich (mind. 2 x)."
     }
   },
   {
-    "model": "backend.CareServices",
+    "model": "backend.CareServiceOption",
     "pk": 58,
     "fields": {
       "name": "S-wundbehandlung-3-3",
-      "field": "S",
-      "category": "Leistungen im Zusammenhang mit Wund- und Hautbehandlung",
+      "field": 2,
+      "category": 7,
       "severity": 3,
-      "list-index": 3,
+      "list_index": 3,
       "description": "Einfacher Verbandwechsel mind. 3 x täglich."
     }
   },
   {
-    "model": "backend.CareServices",
+    "model": "backend.CareServiceOption",
     "pk": 59,
     "fields": {
       "name": "S-wundbehandlung-4-1",
-      "field": "S",
-      "category": "Leistungen im Zusammenhang mit Wund- und Hautbehandlung",
+      "field": 2,
+      "category": 7,
       "severity": 4,
-      "list-index": 1,
+      "list_index": 1,
       "description": "Es muss in mindestens zwei verschiedenen Leistungsbereichen je mindestens ein Zuordnungsmerkmal der Leistungsstufe S3 zutreffen"
     }
   }
