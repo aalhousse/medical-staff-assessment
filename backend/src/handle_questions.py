@@ -32,7 +32,7 @@ def add_selected_attribute(care_service_options: list, patient_id: int) -> list:
         return [{**option, 'selected': False} for option in care_service_options]
 
     # Get all previous selected care services
-    previous_selcted_services = list(IsCareServiceUsed.objects.filter(
+    previous_selected_services = list(IsCareServiceUsed.objects.filter(
         classification_id=previous_classification[0]['id'],
     ).values('care_service_id'))
 
@@ -40,7 +40,7 @@ def add_selected_attribute(care_service_options: list, patient_id: int) -> list:
     for option in care_service_options:
         option['selected'] = any(
             previous_service['care_service_id'] == option['id']
-            for previous_service in previous_selcted_services
+            for previous_service in previous_selected_services
         )
 
     return care_service_options
@@ -91,7 +91,7 @@ def has_missing_data(body: dict) -> bool:
             or 'selected_care_services' not in body)
 
 
-def submit_selected_options(patient_id: int, body: dict) -> None:
+def submit_selected_options(patient_id: int, body: dict) -> JsonResponse:
     """Save the questions to the database.
 
     Args:
@@ -132,6 +132,7 @@ def handle_questions(request, patient_id: int) -> JsonResponse:
 
     Args:
         request (Request): The request
+        patient_id (int): The ID of the patient.
 
     Returns:
         JsonResponse: The response send back to the client depending on the type of request

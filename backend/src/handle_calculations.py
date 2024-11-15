@@ -59,10 +59,10 @@ def choose_general_care_group(data: dict, barthel_index: int, expanded_barthel_i
             and (barthel_index <= 35 or expanded_barthel_index <= 15 or mini_mental_status <= 16)):
         # Patient is in the highest care category
         return 4
-    elif (3 in data and len(data[3]) > 1):
+    elif 3 in data and len(data[3]) > 1:
         # Patient is in the third care category
         return 3
-    elif (2 in data and (len(data[2]) > 1 or (3 in data and len(data[3]) > 0))):
+    elif 2 in data and (len(data[2]) > 1 or (3 in data and len(data[3]) > 0)):
         # Patient is in the second care category
         return 2
     else:
@@ -85,13 +85,13 @@ def choose_specific_care_group(data: dict) -> int:
     Returns:
         int: The care group the patient belongs to.
     """
-    if (3 in data and len(data[3]) > 1):
+    if 3 in data and len(data[3]) > 1:
         # Patient is in the highest care category
         return 4
-    elif (3 in data):
+    elif 3 in data:
         # Patient is in the third care category
         return 3
-    elif (2 in data):
+    elif 2 in data:
         # Patient is in the second care category
         return 2
     else:
@@ -111,7 +111,7 @@ def sum_minutes(a_value: str, s_value: str, body: dict) -> int:
         int: The sum of the minutes.
     """
     minutes = 33  # Base value
-    if (body['is_in_isolation']):
+    if body['is_in_isolation']:
         minutes = 123  # Base value for isolation
 
     # Data taken from the PPBV (TODO: Outsource this to somewhere else)
@@ -166,7 +166,7 @@ def calculate_care_minutes(body_data: dict) -> int:
     # Sort data to iterate over it
     data_groups = group_and_count_data(body_data['selected_care_services'])
 
-    # Calculate service categorys severity
+    # Calculate service category's severity
     data_groups['A_Value'] = choose_general_care_group(
         data_groups['A'],
         body_data['barthel_index'],
@@ -180,7 +180,7 @@ def calculate_care_minutes(body_data: dict) -> int:
 
 
 def handle_calculations(request):
-    """Endpoint to calculate the minutes a care giver has time for caring for a patient.
+    """Endpoint to calculate the minutes a caregiver has time for caring for a patient.
 
     Args:
         request (HttpRequest): The request object.
