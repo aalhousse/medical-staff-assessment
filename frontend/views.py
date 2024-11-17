@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from backend.models import Station, Patient
+from backend.models import Station
 
 
 def home(request):
