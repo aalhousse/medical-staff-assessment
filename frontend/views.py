@@ -2,6 +2,7 @@ from django.shortcuts import render
 from backend.models import Station
 from datetime import datetime, timedelta
 
+
 def home(request):
     return render(request, 'frontend/home.html')
 
@@ -33,11 +34,9 @@ def station_patient_list(request, id):
 
 def classification(request, id, patient_id, date):
     current_date = datetime.strptime(date, '%Y-%m-%d')
-    
     # Calculate previous and next dates
     previous_date = (current_date - timedelta(days=1)).strftime('%Y-%m-%d')
     next_date = (current_date + timedelta(days=1)).strftime('%Y-%m-%d')
-    
     # Example patient name - replace with actual database query when possible
     patient_name = "Max Mustermann"
     next_patient_id = int(patient_id) + 1
