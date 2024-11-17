@@ -1,6 +1,5 @@
 from django.shortcuts import render
 from backend.models import Station, Patient
-from django.shortcuts import get_object_or_404
 
 
 def home(request):
