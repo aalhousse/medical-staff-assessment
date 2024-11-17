@@ -80,8 +80,8 @@ DATABASES = {
         'USER': config('DB_USER'),
         'PASSWORD': config('DB_PASSWORD'),
         'HOST': config('DB_HOST'),
-        'PORT': config('DB_PORT_INTERNAL'),
-    } if not config('DEVELOPMENT_MODE') == "True" else
+        'PORT': config('DB_PORT'),
+    } if config("DB_HOST") else
     {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / config('DB_NAME'),

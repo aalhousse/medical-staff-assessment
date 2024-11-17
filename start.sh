@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Wait for the PostgreSQL server to be available
-while ! nc -z $DB_HOST $DB_PORT_INTERNAL; do
+while ! nc -z $DB_HOST $DB_PORT; do
   echo "Waiting for database to be ready..."
   sleep 3
 done
