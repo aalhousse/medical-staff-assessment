@@ -9,4 +9,6 @@ urlpatterns = [
     path('stations', views.stations, name='stations'),
     path('stations/<int:id>', views.station_patient_list, name='station_patient_list'),
     path('stations/<int:id>/<int:patient_id>/<str:date>', views.classification, name='patient_daily_classification'),
+    path('tables2', views.tables2, name='tables2'),
+    path('tables3', views.tables3, name='tables3'),
 ]
