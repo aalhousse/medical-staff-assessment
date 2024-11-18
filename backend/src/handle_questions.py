@@ -140,7 +140,6 @@ def handle_questions(request, patient_id: int) -> JsonResponse:
     if request.method == 'POST':
         # Handle the submission of questions
         body_data = json.loads(request.body)
-        print(body_data)
         return submit_selected_options(patient_id, body_data)
     elif request.method == 'GET':
         # Handle the pulling of questions for a patient
