@@ -37,15 +37,15 @@
         <h2>Tagesdaten</h2>
         <div class="checkbox-group">
             <label>
-                <input type="checkbox" checked>
+                <input type="checkbox" checked={{ isDayOfAdmission }}>
                 Tag der Aufnahme
             </label>
             <label>
-                <input type="checkbox" checked>
+                <input type="checkbox" checked={{ isDayOfDischarge }}>
                 Tag der Entlassung
             </label>
             <label>
-                <input type="checkbox" checked>
+                <input type="checkbox" checked={{ isInIsolation }}>
                 In Isolation
             </label>
         </div>
@@ -55,8 +55,8 @@
         </div>
 
         <div class="result">
-            <span>Kategorie: <strong>A2/S3</strong></span>
-            <span>Minutenzahl: <strong>167min</strong></span>
+            <span>Kategorie: <strong>{{ category1 }}/{{ category2 }}</strong></span>
+            <span>Minutenzahl: <strong>{{ minutes }}min</strong></span>
         </div>
     </aside>
 

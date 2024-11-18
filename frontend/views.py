@@ -47,6 +47,12 @@ def classification(request, id, patient_id, date):
         'previous_date_url': f"/stations/{id}/{patient_id}/{previous_date}",
         'next_date_url': f"/stations/{id}/{patient_id}/{next_date}",
         'next_patient_url': f"/stations/{id}/{next_patient_id}/{date}",
-        'patient_name': patient_name
+        'patient_name': patient_name,
+        'category1': "A2",
+        'category2': "S2",
+        'minutes': 163,
+        'isInIsolation': True,
+        'isDayOfDischarge': True,
+        'isDayOfAdmission': True
     }
     return render(request, 'frontend/classification.html', context)
