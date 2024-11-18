@@ -20,7 +20,7 @@ fi
 
 # Create the database
 echo 'Make migrations'
-python /app/manage.py makemigrations
+python /app/manage.py makemigrations backend
 python /app/manage.py migrate
 
 # Create superuser
