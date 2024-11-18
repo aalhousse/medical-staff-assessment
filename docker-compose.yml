@@ -10,7 +10,7 @@ services:
       POSTGRES_USER: ${DB_USER}
       POSTGRES_PASSWORD: ${DB_PASSWORD}
     ports:
-      - "${DB_PORT_EXTERNAL}:${DB_PORT_INTERNAL}"
+      - "${DB_PORT}:5432"
     env_file:
       - .env
 

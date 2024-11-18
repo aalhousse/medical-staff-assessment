@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Wait for the PostgreSQL server to be available
-while ! nc -z $DB_HOST $DB_PORT_INTERNAL; do
+while ! nc -z $DB_HOST $DB_PORT; do
   echo "Waiting for database to be ready..."
   sleep 3
 done
@@ -20,7 +20,7 @@ fi
 
 # Create the database
 echo 'Make migrations'
-python /app/manage.py makemigrations
+python /app/manage.py makemigrations backend
 python /app/manage.py migrate
 
 # Create superuser
