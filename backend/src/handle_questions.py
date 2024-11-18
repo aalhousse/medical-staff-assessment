@@ -103,7 +103,7 @@ def submit_selected_options(patient_id: int, body: dict) -> JsonResponse:
         return JsonResponse({'message': 'Missing information in the request.'}, status=400)
 
     # Create the classification entry
-    patient = Patient.objects.get(patient_id=patient_id)
+    patient = Patient.objects.get(id=patient_id)
     minutes_to_take_care = calculate_care_minutes(body)
     classification = DailyClassification.objects.create(
         patient_id=patient,
