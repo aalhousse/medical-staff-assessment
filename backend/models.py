@@ -28,8 +28,8 @@ class CareServiceOption(models.Model):
 
     id = models.IntegerField(primary_key=True)
     name = models.CharField(max_length=200)     # Concatenation of all columns, e.g. 'A-koerperpflege-1-1'
-    field_id = models.ForeignKey('CareServiceField', on_delete=models.CASCADE)
-    category_id = models.ForeignKey('CareServiceCategory', on_delete=models.CASCADE)
+    field = models.ForeignKey('CareServiceField', on_delete=models.CASCADE)
+    category = models.ForeignKey('CareServiceCategory', on_delete=models.CASCADE)
     severity = models.IntegerField()            # Degree of needed help, increasing from 1 to 4
     list_index = models.IntegerField()          # Index of question within single field, category and severity
     description = models.TextField()            # Content of question
@@ -42,13 +42,13 @@ class DailyClassification(models.Model):
     """Daily classification of patients according to the PPBV."""
 
     id = models.IntegerField(primary_key=True)
-    patient_id = models.ForeignKey('Patient', on_delete=models.CASCADE)
-    classification_date = models.DateField()
+    patient = models.ForeignKey('Patient', on_delete=models.CASCADE)
+    date = models.DateField()
     care_service_name = models.CharField(max_length=200)  # Name of CareServiceOption, e.g. 'A-koerperpflege-1-1'
     is_in_isolation = models.BooleanField()
     data_accepted = models.BooleanField()   # Did the caregiver accept previous data
     result_minutes = models.IntegerField()  # Care time calculated according to PPBV
-    station_id = models.ForeignKey('Station', on_delete=models.CASCADE)
+    station = models.ForeignKey('Station', on_delete=models.CASCADE)
     room_name = models.CharField(max_length=100)
     bed_number = models.CharField(max_length=100)
 
@@ -63,8 +63,8 @@ class IsCareServiceUsed(models.Model):
     """Care service options used for a patient's daily classification on a specific date.
     Any entry here means that the service is used"""
 
-    classification_id = models.ForeignKey('DailyClassification', on_delete=models.CASCADE)
-    care_service_option_id = models.ForeignKey('CareServiceOption', on_delete=models.CASCADE)
+    classification = models.ForeignKey('DailyClassification', on_delete=models.CASCADE)
+    care_service_option = models.ForeignKey('CareServiceOption', on_delete=models.CASCADE)
 
     class Meta:
         unique_together = ('classification_id', 'care_service_option_id')  # Combined primary key
@@ -96,7 +96,7 @@ class Patient(models.Model):
     date_of_birth = models.DateField()
     weight = models.FloatField()
     height = models.FloatField()
-    station_id = models.ForeignKey('Station', on_delete=models.CASCADE)  # Current station
+    station = models.ForeignKey('Station', on_delete=models.CASCADE)  # Current station
     admission_date = models.DateTimeField()         # Date and time patient arrived at hospital
     discharge_date = models.DateField()             # Date patient will be released from hospital
     deceased_date = models.DateField()              # Date patient passed away
@@ -109,10 +109,10 @@ class PatientTransfers(models.Model):
     """Transfers of patients between stations."""
 
     id = models.IntegerField(primary_key=True)
-    patient_id = models.ForeignKey('Patient', on_delete=models.CASCADE)
+    patient = models.ForeignKey('Patient', on_delete=models.CASCADE)
     transfer_date = models.DateTimeField()
-    station_id_old = models.CharField(max_length=100)   # Station patient came from
-    station_id_new = models.CharField(max_length=100)   # Station patient went to
+    station_old = models.CharField(max_length=100)   # Station patient came from
+    station_new = models.CharField(max_length=100)   # Station patient went to
     transferred_to_external = models.BooleanField()     # True if patient was transferred to different hospital
 
     def __str__(self):
@@ -123,7 +123,7 @@ class StationOccupancy(models.Model):
     """Daily patient occupancies of stations."""
 
     id = models.IntegerField(primary_key=True)
-    station_id = models.ForeignKey('Station', on_delete=models.CASCADE)
+    station = models.ForeignKey('Station', on_delete=models.CASCADE)
     date = models.DateField()
     patients_in_total = models.IntegerField()       # total patients incoming today
     patients_in_external = models.IntegerField()    # patients with admission_date == today
@@ -146,7 +146,7 @@ class StationWorkloadDaily(models.Model):
     """Daily workload for caregivers in all stations."""
 
     id = models.IntegerField(primary_key=True)
-    station_id = models.ForeignKey('Station', on_delete=models.CASCADE)
+    station = models.ForeignKey('Station', on_delete=models.CASCADE)
     date = models.DateField()
     shift = models.CharField(max_length=100)        # Day or night shift
     patients_total = models.IntegerField()          # Patients_total of station and date
@@ -166,7 +166,7 @@ class StationWorkloadMonthly(models.Model):
     """Monthly workload for caregivers in all stations for export."""
 
     id = models.IntegerField(primary_key=True)
-    station_id = models.ForeignKey('Station', on_delete=models.CASCADE)
+    station = models.ForeignKey('Station', on_delete=models.CASCADE)
     month = models.DateField()                          # Use first day to represent month
     shift = models.CharField(max_length=100)            # Day or night shift
     patients_avg = models.FloatField()                  # Average daily patients; currently same for day and night
