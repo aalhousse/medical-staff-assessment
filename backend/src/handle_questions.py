@@ -1,8 +1,11 @@
 """Provide questions for the frontend to display and handle the submission of answers."""
 import json
-from django.http import JsonResponse
-from ..models import CareServiceOption, Patient, DailyClassification, IsCareServiceUsed
 from datetime import date, timedelta
+
+from django.http import JsonResponse
+
+from ..models import (CareServiceOption, DailyClassification,
+                      IsCareServiceUsed, Patient)
 from .handle_calculations import calculate_care_minutes
 
 
@@ -82,7 +85,7 @@ def has_missing_data(body: dict) -> bool:
     """
     return ('is_in_isolation' not in body
             or 'data_accepted' not in body
-            or 'station' not in body
+            or 'station_id' not in body
             or 'room_name' not in body
             or 'bed_number' not in body
             or 'barthel_index' not in body
@@ -111,7 +114,7 @@ def submit_selected_options(patient_id: int, body: dict) -> JsonResponse:
         is_in_isolation=body['is_in_isolation'],
         data_accepted=body['data_accepted'],
         result_minutes=minutes_to_take_care,
-        station_id=body['station'],
+        station_id=body['station_id'],
         room_name=body['room_name'],
         bed_number=body['bed_number'],
     )
@@ -120,8 +123,8 @@ def submit_selected_options(patient_id: int, body: dict) -> JsonResponse:
     for care_service in body['selected_care_services']:
         care_service = CareServiceOption.objects.get(id=care_service['id'])
         IsCareServiceUsed.objects.create(
-            care_service=care_service,
-            classification=classification,
+            classification_id=classification,
+            care_service_option_id=care_service,            
         )
 
     return JsonResponse({'message': 'Successfully saved the selected care services.'}, status=200)
