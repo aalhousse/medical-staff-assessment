@@ -124,7 +124,7 @@ def submit_selected_options(patient_id: int, body: dict) -> JsonResponse:
         care_service = CareServiceOption.objects.get(id=care_service['id'])
         IsCareServiceUsed.objects.create(
             classification_id=classification,
-            care_service_option_id=care_service,      
+            care_service_option_id=care_service,
         )
 
     return JsonResponse({'message': 'Successfully saved the selected care services.'}, status=200)

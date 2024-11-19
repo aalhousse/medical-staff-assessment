@@ -43,7 +43,7 @@ class DailyClassification(models.Model):
 
     id = models.IntegerField(primary_key=True)
     patient_id = models.ForeignKey('Patient', on_delete=models.CASCADE)
-    classification_date = models.DateField()  
+    classification_date = models.DateField()
     care_service_name = models.CharField(max_length=200)  # Name of CareServiceOption, e.g. 'A-koerperpflege-1-1'
     is_in_isolation = models.BooleanField()
     data_accepted = models.BooleanField()   # Did the caregiver accept previous data
