@@ -53,10 +53,10 @@ class DailyClassification(models.Model):
     bed_number = models.CharField(max_length=100)
 
     class Meta:
-        unique_together = ('patient_id', 'classification_date')
+        unique_together = ('patient_id', 'date')
 
     def __str__(self):
-        return f"{self.patient_id} ({self.classification_date})"
+        return f"{self.patient_id} ({self.date})"
 
 
 class IsCareServiceUsed(models.Model):
