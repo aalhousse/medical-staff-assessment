@@ -41,7 +41,6 @@ class CareServiceOption(models.Model):
 class DailyClassification(models.Model):
     """Daily classification of patients according to the PPBV."""
 
-    id = models.IntegerField(primary_key=True)
     patient = models.ForeignKey('Patient', on_delete=models.CASCADE)
     date = models.DateField()
     is_in_isolation = models.BooleanField()
