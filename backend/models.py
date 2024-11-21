@@ -53,10 +53,10 @@ class DailyClassification(models.Model):
     bed_number = models.CharField(max_length=100)
 
     class Meta:
-        unique_together = ('patient_id', 'date')
+        unique_together = ('patient', 'date')
 
     def __str__(self):
-        return f"{self.patient_id} ({self.date})"
+        return f"{self.patient} ({self.date})"
 
 
 class IsCareServiceUsed(models.Model):
@@ -67,10 +67,10 @@ class IsCareServiceUsed(models.Model):
     care_service_option = models.ForeignKey('CareServiceOption', on_delete=models.CASCADE)
 
     class Meta:
-        unique_together = ('classification_id', 'care_service_option_id')  # Combined primary key
+        unique_together = ('classification', 'care_service_option')  # Combined primary key
 
     def __str__(self):
-        return self.classification_id
+        return self.classification
 
 
 class Station(models.Model):
@@ -116,7 +116,7 @@ class PatientTransfers(models.Model):
     transferred_to_external = models.BooleanField()  # True if patient was transferred to different hospital
 
     def __str__(self):
-        return f"{self.patient_id} {self.station_old} {self.station_new}"
+        return f"{self.patient} {self.station_old} {self.station_new}"
 
 
 class StationOccupancy(models.Model):
@@ -136,10 +136,10 @@ class StationOccupancy(models.Model):
     patients_total = models.IntegerField()  # patients_in_total - patients_out_total
 
     class Meta:
-        unique_together = ('station_id', 'date')
+        unique_together = ('station', 'date')
 
     def __str__(self):
-        return f"{self.station_id} {self.date} {self.patients_total}"
+        return f"{self.station} {self.date} {self.patients_total}"
 
 
 class StationWorkloadDaily(models.Model):
@@ -156,10 +156,10 @@ class StationWorkloadDaily(models.Model):
     minutes_per_caregiver = models.FloatField()  # minutes_total / caregivers_total
 
     class Meta:
-        unique_together = ('station_id', 'date', 'shift')
+        unique_together = ('station', 'date', 'shift')
 
     def __str__(self):
-        return f"{self.station_id} {self.date} {self.shift} {self.patients_per_caregiver}"
+        return f"{self.station} {self.date} {self.shift} {self.patients_per_caregiver}"
 
 
 class StationWorkloadMonthly(models.Model):
@@ -174,7 +174,7 @@ class StationWorkloadMonthly(models.Model):
     patients_per_caregiver_avg = models.FloatField()  # Average daily patients per caregiver
 
     class Meta:
-        unique_together = ('station_id', 'month', 'shift')
+        unique_together = ('station', 'month', 'shift')
 
     def __str__(self):
-        return f"{self.station_id} {self.month} {self.shift} {self.patients_per_caregiver_avg}"
+        return f"{self.station} {self.month} {self.shift} {self.patients_per_caregiver_avg}"
