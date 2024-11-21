@@ -68,7 +68,7 @@ class IsCareServiceUsed(models.Model):
         unique_together = ('classification', 'care_service_option')  # Combined primary key
 
     def __str__(self):
-        return self.classification
+        return f"{self.care_service_option} {self.classification}"
 
 
 class Station(models.Model):
