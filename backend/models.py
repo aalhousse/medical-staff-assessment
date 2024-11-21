@@ -94,7 +94,6 @@ class Patient(models.Model):
     date_of_birth = models.DateField()
     weight = models.FloatField()
     height = models.FloatField()
-    station = models.ForeignKey('Station', on_delete=models.CASCADE)  # Current station
     deceased_date = models.DateField()  # Date patient passed away
 
     def __str__(self):
