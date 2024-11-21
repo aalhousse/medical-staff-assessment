@@ -44,7 +44,6 @@ class DailyClassification(models.Model):
     id = models.IntegerField(primary_key=True)
     patient = models.ForeignKey('Patient', on_delete=models.CASCADE)
     date = models.DateField()
-    care_service_name = models.CharField(max_length=200)  # Name of CareServiceOption, e.g. 'A-koerperpflege-1-1'
     is_in_isolation = models.BooleanField()
     data_accepted = models.BooleanField()  # Did the caregiver accept previous data
     result_minutes = models.IntegerField()  # Care time calculated according to PPBV
