@@ -160,4 +160,4 @@ To maintain a high standard of code quality in this project, we adhere to the fo
 
 We model our database to be easily adaptable for new standards of the PBBV. Therefore, the following data model is drafted:
 
-![datamodel](./documentation/media/DB-Model-PBBV-13-11-2024.svg)
+![datamodel](../documentation/media/DB-Model-PBBV-13-11-2024.svg)
