@@ -1,3 +1,3 @@
-export const usePatientClassification = (patientId: string) => {
+export const usePatientClassification = () => {
   // TODO implement
 }

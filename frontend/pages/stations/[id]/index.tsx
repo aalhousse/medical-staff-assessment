@@ -6,7 +6,7 @@ import { Card } from '@/components/Card'
 import { Page } from '@/layout/Page'
 import { useStationsAPI } from '@/api/stations'
 import { usePatientsAPI } from '@/api/patients'
-import { dayFormatted } from '@/util/formatDate'
+import { formatDate } from '@/util/formatDate'
 
 type SortingState = {
   nameAscending: boolean,
@@ -94,7 +94,7 @@ export const StationPatientList = () => {
                 <td>
                   <button
                     className="flex flex-row gap-x-2 rounded px-2 py-1 items-center bg-primary/60 hover:bg-primary/80"
-                    onClick={() => router.push(`/stations/${id}/${patient.id}/${dayFormatted()}`)}
+                    onClick={() => router.push(`/stations/${id}/${patient.id}/${formatDate()}`)}
                   >
                     <span>Auswählen</span>
                     <ArrowRight size={20}/>

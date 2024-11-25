@@ -20,7 +20,8 @@ export type CareServiceOptionClassification = {
   id: string,
   index: number,
   name: string,
-  description: string
+  description: string,
+  selected: boolean
 }
 
 export type DailyClassification = {
