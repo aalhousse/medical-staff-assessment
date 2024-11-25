@@ -240,3 +240,4 @@ class IsCareServiceUsed(models.Model):
 
     def __str__(self):
         return f"{self.classification}"
+    
