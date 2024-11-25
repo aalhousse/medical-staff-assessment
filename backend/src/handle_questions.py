@@ -1,6 +1,6 @@
 """Provide questions for the frontend to display and handle the submission of answers."""
 import json
-from datetime import date, timedelta
+from datetime import date, datetime
 
 from django.http import JsonResponse
 
@@ -9,34 +9,23 @@ from ..models import (CareServiceOption, DailyClassification,
 from .handle_calculations import calculate_care_minutes
 
 
-def add_selected_attribute(care_service_options: list, patient_id: int) -> list:
+def add_selected_attribute(care_service_options: list, classification: dict) -> list:
     """Add the attribute if the care service was previously selected or not.
 
     Args:
         care_service_options (list): The care service options to which to add the 'selected' attribute.
-        patient_id (int): The ID of the patient to look for previous classifications.
+        classification (dict): The classification of the patient.
 
     Returns:
         list: The care service options with the attribute if they were previously selected or not.
     """
-    # If patient does not exist, return the questions without the attribute
-    if not Patient.objects.filter(id=patient_id).exists():
-        return [{**option, 'selected': False} for option in care_service_options]
-
-    # Get the ID of the previous classification
-    previous_date = date.today() - timedelta(days=1)
-    previous_classification = list(DailyClassification.objects.filter(
-        patient=patient_id,
-        date=previous_date,
-    ).values('id'))
-
-    # If no previous classification exists, return the questions without the attribute
-    if len(previous_classification) == 0:
+    # If no classification exist, return the questions with everything unselected
+    if classification is None:
         return [{**option, 'selected': False} for option in care_service_options]
 
     # Get all previous selected care services
     previous_selected_services = list(IsCareServiceUsed.objects.filter(
-        classification=previous_classification[0]['id'],
+        classification=classification['id'],
     ).values('care_service_option'))
 
     # Add the attribute if the care service was previously selected or not
@@ -49,14 +38,15 @@ def add_selected_attribute(care_service_options: list, patient_id: int) -> list:
     return care_service_options
 
 
-def get_questions(patient_id: int) -> list:
+def get_questions(patient_id: int, date: date) -> list:
     """Get the questions from the database.
 
     Args:
         patient_id (int): The ID of the patient.
+        date (date): The date of the classification.
 
     Returns:
-        list: The questions from the database and the attribute if they were previously selected or not.
+        dict: The questions with the corresponding information for that date.
     """
     # Get the questions with the corresponding information
     care_service_options = list(
@@ -71,7 +61,22 @@ def get_questions(patient_id: int) -> list:
         )
     )
 
-    return add_selected_attribute(care_service_options, patient_id)
+    # Get the classification of the patient for the specified date
+    classification = DailyClassification.objects.filter(
+        patient=patient_id,
+        date=date,
+    ).values().first()
+
+    # Add the attribute if the care service was selected or not on that date
+    care_service_options = add_selected_attribute(care_service_options, classification)
+
+    return {
+        'care_service_options': care_service_options,
+        'care_time': classification['result_minutes'] if classification else 0,
+        'is_in_isolation': classification['is_in_isolation'] if classification else False,
+        'a_index': classification['a_index'] if classification else 0,
+        's_index': classification['s_index'] if classification else 0,
+    }
 
 
 def has_missing_data(body: dict) -> bool:
@@ -100,6 +105,8 @@ def submit_selected_options(patient_id: int, body: dict) -> JsonResponse:
     Args:
         patient_id (int): The ID of the patient.
         body (dict): The body of the request containing the selected care services and more information.
+    Returns:
+        JsonResponse: The response containing the calculated minutes, the general and the specific care group.
     """
     # Check if the body contains all necessary information
     if has_missing_data(body):
@@ -107,7 +114,7 @@ def submit_selected_options(patient_id: int, body: dict) -> JsonResponse:
 
     # Create the classification entry
     patient = Patient.objects.get(id=patient_id)
-    minutes_to_take_care = calculate_care_minutes(body)
+    minutes_to_take_care, a_index, s_index = calculate_care_minutes(body)
     station = Station.objects.get(id=body['station'])
     classification = DailyClassification.objects.create(
         patient=patient,
@@ -115,6 +122,8 @@ def submit_selected_options(patient_id: int, body: dict) -> JsonResponse:
         is_in_isolation=body['is_in_isolation'],
         data_accepted=body['data_accepted'],
         result_minutes=minutes_to_take_care,
+        a_index=a_index,
+        s_index=s_index,
         station=station,
         room_name=body['room_name'],
         bed_number=body['bed_number'],
@@ -128,23 +137,28 @@ def submit_selected_options(patient_id: int, body: dict) -> JsonResponse:
             care_service_option=care_service,
         )
 
-    return JsonResponse({'message': 'Successfully saved the selected care services.'}, status=200)
+    return JsonResponse({'minutes': minutes_to_take_care, 'a_index': a_index, 's_index': s_index}, status=200)
 
 
-def handle_questions(request, patient_id: int) -> JsonResponse:
+def handle_questions(request, patient_id: int, date: str) -> JsonResponse:
     """Endpoint to handle the submission and pulling of questions.
 
     Args:
         request (Request): The request
         patient_id (int): The ID of the patient.
+        date (str): The date of the classification ('YYYY-MM-DD').
 
     Returns:
         JsonResponse: The response send back to the client depending on the type of request
     """
+    try:
+        date = datetime.strptime(date, '%Y-%m-%d').date()
+    except ValueError:
+        return JsonResponse({'error': 'Invalid date format. Use YYYY-MM-DD.'}, status=400)
     if request.method == 'POST':
         # Handle the submission of questions
         body_data = json.loads(request.body)
         return submit_selected_options(patient_id, body_data)
     elif request.method == 'GET':
         # Handle the pulling of questions for a patient
-        return JsonResponse(get_questions(patient_id), safe=False)
+        return JsonResponse(get_questions(patient_id, date), safe=False)

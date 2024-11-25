@@ -162,21 +162,23 @@ def calculate_care_minutes(body_data: dict) -> int:
 
     Returns:
         int: The minutes the patient should receive care services.
+        int: The severity of the general care group.
+        int: The severity of the specific care group.
     """
     # Sort data to iterate over it
     data_groups = group_and_count_data(body_data['selected_care_services'])
 
     # Calculate service category's severity
-    data_groups['A_Value'] = choose_general_care_group(
+    a_index = choose_general_care_group(
         data_groups['A'],
         body_data['barthel_index'],
         body_data['expanded_barthel_index'],
         body_data['mini_mental_status']
     )
-    data_groups['S_Value'] = choose_specific_care_group(data_groups['S'])
+    s_index = choose_specific_care_group(data_groups['S'])
 
     # Calculate the minutes accordingly
-    return sum_minutes(data_groups['A_Value'], data_groups['S_Value'], body_data)
+    return sum_minutes(a_index, s_index, body_data), a_index, s_index
 
 
 def handle_calculations(request):
@@ -190,7 +192,7 @@ def handle_calculations(request):
     """
     if request.method == 'POST':
         body_data = json.loads(request.body)
-        result_minutes = calculate_care_minutes(body_data)
-        return JsonResponse({'minutes': result_minutes}, status=200)
+        result_minutes, a_index, s_index = calculate_care_minutes(body_data)
+        return JsonResponse({'minutes': result_minutes, 'a_index': a_index, 's_index': s_index}, status=200)
     else:
         return JsonResponse({'message': 'Method not allowed.'}, status=405)
