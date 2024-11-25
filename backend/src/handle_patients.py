@@ -23,17 +23,17 @@ def get_patients_per_station(station_id: int) -> list:
 
     # Query DailyClassification for the relevant time range and station
     classifications = DailyClassification.objects.filter(
-        station_id=station_id,
-        classification_date__in=[yesterday, today]
-    ).values('patient_id', 'classification_date')
+        station=station_id,
+        date__in=[yesterday, today]
+    ).values('patient', 'date')
 
     # Annotate patients with the classified status
     patients = Patient.objects.filter(
-        id__in=classifications.values('patient_id')
+        id__in=classifications.values('patient')
     ).annotate(
         classified_today=Case(
             When(
-                id__in=classifications.filter(classification_date=today).values('patient_id'),
+                id__in=classifications.filter(date=today).values('patient'),
                 then=True
             ),
             default=False,
