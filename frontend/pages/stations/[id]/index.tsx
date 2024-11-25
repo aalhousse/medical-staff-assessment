@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router'
 import { useState } from 'react'
-import { ArrowRight, LucideArrowDown, LucideArrowUp } from 'lucide-react'
+import { ArrowLeft, ArrowRight, LucideArrowDown, LucideArrowUp } from 'lucide-react'
 import { Header } from '@/layout/Header'
 import { Card } from '@/components/Card'
 import { Page } from '@/layout/Page'
@@ -46,56 +46,66 @@ export const StationPatientList = () => {
 
   return (
     <Page
-      header={(<Header start={(<h2 className="text-2xl bold">{currentStation?.name}</h2>)}/>)}
+      header={(
+        <Header start={(
+          <div className="flex flex-row gap-x-4 items-center">
+            <ArrowLeft size={32} onClick={() => router.push('/stations')} className="cursor-pointer"/>
+            <h2 className="text-2xl bold">{currentStation?.name}</h2>
+          </div>
+        )}/>
+      )}
+      className="justify-center"
     >
       <div className="flex flex-col gap-10 p-10 content-start max-w-[1200px] w-full">
         <Card>
-          <h3 className="text-2xl bold">Patientenliste</h3>
-          <table className="w-full border-separate border-spacing-1">
+          <h3 className="pl-2 pb-3 text-2xl font-bold">Patientenliste</h3>
+          <table className="w-full table-auto border-collapse">
             <thead>
             <tr className="text-left">
-              <th>
+              <th className="pl-2">
                 <button onClick={() => setSortingState({
                   ...sortingState,
                   nameAscending: !sortingState.nameAscending,
                   last: 'name'
                 })}>
                   <div className="flex flex-row gap-x-1 items-center">
-                    <span>Name</span>
+                    <span className="text-lg">Name</span>
                     {sortingState.nameAscending ? <LucideArrowDown size={18}/> : <LucideArrowUp size={18}/>}
                   </div>
                 </button>
               </th>
-              <th>
+              <th className="text-center">
                 <button onClick={() => setSortingState({
                   ...sortingState,
                   hasClassificationAscending: !sortingState.hasClassificationAscending,
                   last: 'classification'
                 })}>
                   <div className="flex flex-row gap-x-1 items-center">
-                    <span>Letzter Eintrag</span>
-                    {sortingState.hasClassificationAscending ? <LucideArrowDown size={18}/> : <LucideArrowUp size={18}/>}
+                    <span className="text-lg">Letzter Eintrag</span>
+                    {sortingState.hasClassificationAscending ? <LucideArrowDown size={18}/> :
+                      <LucideArrowUp size={18}/>}
                   </div>
                 </button>
               </th>
-              <th>Aktionen</th>
+              <th/>
             </tr>
             </thead>
             <tbody>
             {sortedPatients.map(patient => (
-              <tr key={patient.id}>
-                <td>{patient.name}</td>
-                <td>
+              <tr
+                key={patient.id}
+                onClick={() => router.push(`/stations/${id}/${patient.id}/${formatDate()}`)}
+                className="cursor-pointer hover:bg-gray-200 rounded-xl"
+              >
+                <td className="rounded-l-xl pl-2">{patient.name}</td>
+                <td className="flex flex-col items-center py-1">
                   <div
                     className={`rounded-xl w-32 text-center px-2 py-1 border-2 ${patient.hasClassification ? 'border-green-500' : 'border-amber-400'}`}>
                     {patient.hasClassification ? 'Heute' : 'Gestern'}
                   </div>
                 </td>
-                <td>
-                  <button
-                    className="flex flex-row gap-x-2 rounded px-2 py-1 items-center bg-primary/60 hover:bg-primary/80"
-                    onClick={() => router.push(`/stations/${id}/${patient.id}/${formatDate()}`)}
-                  >
+                <td className="rounded-r-xl">
+                  <button className="flex flex-row gap-x-2 rounded px-2 py-1 items-center float-end">
                     <span>Auswählen</span>
                     <ArrowRight size={20}/>
                   </button>

@@ -18,7 +18,7 @@ export const Header = ({
   end
 }: HeaderProps) => {
   return (
-    <div className="flex flex-row justify-between items-center h-[96px] p-4 w-full bg-container z-1 shadow">
+    <div className="flex flex-row justify-between items-center h-[96px] p-4 w-full bg-container z-10 shadow">
       {start}
       {end}
     </div>
