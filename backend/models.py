@@ -57,20 +57,6 @@ class DailyClassification(models.Model):
         return f"{self.patient} ({self.date})"
 
 
-class IsCareServiceUsed(models.Model):
-    """Care service options used for a patient's daily classification on a specific date.
-    Any entry here means that the service is used"""
-
-    classification = models.ForeignKey('DailyClassification', on_delete=models.CASCADE)
-    care_service_option = models.ForeignKey('CareServiceOption', on_delete=models.CASCADE)
-
-    class Meta:
-        unique_together = ('classification', 'care_service_option')  # Combined primary key
-
-    def __str__(self):
-        return f"{self.care_service_option} {self.classification}"
-
-
 class Station(models.Model):
     """Stations in the hospital."""
 
@@ -175,3 +161,82 @@ class StationWorkloadMonthly(models.Model):
 
     def __str__(self):
         return f"{self.station} {self.month} {self.shift} {self.patients_per_caregiver_avg}"
+
+
+class IsCareServiceUsed(models.Model):
+    """Care service options used for a patient's daily classification on a specific date.
+    Any entry here means that the service is used"""
+
+    classification = models.ForeignKey('DailyClassification', on_delete=models.CASCADE)
+    a_koerperpflege_1_1 = models.BooleanField(default=False)
+    a_koerperpflege_2_1 = models.BooleanField(default=False)
+    a_koerperpflege_2_2 = models.BooleanField(default=False)
+    a_koerperpflege_3_1 = models.BooleanField(default=False)
+    a_koerperpflege_3_2 = models.BooleanField(default=False)
+    a_koerperpflege_3_3 = models.BooleanField(default=False)
+    a_koerperpflege_3_4 = models.BooleanField(default=False)
+    a_koerperpflege_4_1 = models.BooleanField(default=False)
+    a_koerperpflege_4_2 = models.BooleanField(default=False)
+    a_koerperpflege_4_3 = models.BooleanField(default=False)
+    a_koerperpflege_4_4 = models.BooleanField(default=False)
+    a_koerperpflege_4_5 = models.BooleanField(default=False)
+    a_ernaehrung_1_1 = models.BooleanField(default=False)
+    a_ernaehrung_2_1 = models.BooleanField(default=False)
+    a_ernaehrung_2_2 = models.BooleanField(default=False)
+    a_ernaehrung_3_1 = models.BooleanField(default=False)
+    a_ernaehrung_3_2 = models.BooleanField(default=False)
+    a_ernaehrung_3_3 = models.BooleanField(default=False)
+    a_ernaehrung_4_1 = models.BooleanField(default=False)
+    a_ernaehrung_4_2 = models.BooleanField(default=False)
+    a_ernaehrung_4_3 = models.BooleanField(default=False)
+    a_ausscheidung_1_1 = models.BooleanField(default=False)
+    a_ausscheidung_2_1 = models.BooleanField(default=False)
+    a_ausscheidung_2_2 = models.BooleanField(default=False)
+    a_ausscheidung_2_3 = models.BooleanField(default=False)
+    a_ausscheidung_2_4 = models.BooleanField(default=False)
+    a_ausscheidung_2_5 = models.BooleanField(default=False)
+    a_ausscheidung_3_1 = models.BooleanField(default=False)
+    a_ausscheidung_3_2 = models.BooleanField(default=False)
+    a_ausscheidung_3_3 = models.BooleanField(default=False)
+    a_ausscheidung_4_1 = models.BooleanField(default=False)
+    a_ausscheidung_4_2 = models.BooleanField(default=False)
+    a_ausscheidung_4_3 = models.BooleanField(default=False)
+    a_ausscheidung_4_4 = models.BooleanField(default=False)
+    a_mobilisation_1_1 = models.BooleanField(default=False)
+    a_mobilisation_2_1 = models.BooleanField(default=False)
+    a_mobilisation_2_2 = models.BooleanField(default=False)
+    a_mobilisation_2_3 = models.BooleanField(default=False)
+    a_mobilisation_3_1 = models.BooleanField(default=False)
+    a_mobilisation_3_2 = models.BooleanField(default=False)
+    a_mobilisation_3_3 = models.BooleanField(default=False)
+    a_mobilisation_3_4 = models.BooleanField(default=False)
+    a_mobilisation_4_1 = models.BooleanField(default=False)
+    a_mobilisation_4_2 = models.BooleanField(default=False)
+    a_mobilisation_4_3 = models.BooleanField(default=False)
+    s_zusammenhangsleistungen_1_1 = models.BooleanField(default=False)
+    s_zusammenhangsleistungen_2_1 = models.BooleanField(default=False)
+    s_zusammenhangsleistungen_2_2 = models.BooleanField(default=False)
+    s_zusammenhangsleistungen_3_1 = models.BooleanField(default=False)
+    s_zusammenhangsleistungen_3_2 = models.BooleanField(default=False)
+    s_zusammenhangsleistungen_4_1 = models.BooleanField(default=False)
+    s_medikament_1_1 = models.BooleanField(default=False)
+    s_medikament_2_1 = models.BooleanField(default=False)
+    s_medikament_2_2 = models.BooleanField(default=False)
+    s_medikament_3_1 = models.BooleanField(default=False)
+    s_medikament_3_2 = models.BooleanField(default=False)
+    s_medikament_3_3 = models.BooleanField(default=False)
+    s_medikament_3_4 = models.BooleanField(default=False)
+    s_medikament_3_5 = models.BooleanField(default=False)
+    s_medikament_3_6 = models.BooleanField(default=False)
+    s_medikament_4_1 = models.BooleanField(default=False)
+    s_wundbehandlung_1_1 = models.BooleanField(default=False)
+    s_wundbehandlung_2_1 = models.BooleanField(default=False)
+    s_wundbehandlung_2_2 = models.BooleanField(default=False)
+    s_wundbehandlung_2_3 = models.BooleanField(default=False)
+    s_wundbehandlung_3_1 = models.BooleanField(default=False)
+    s_wundbehandlung_3_2 = models.BooleanField(default=False)
+    s_wundbehandlung_3_3 = models.BooleanField(default=False)
+    s_wundbehandlung_4_1 = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f"{self.classification}"
