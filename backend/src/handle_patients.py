@@ -31,7 +31,8 @@ def get_patients_per_station(station_id: int) -> list:
         last_classification=Subquery(
             DailyClassification.objects.filter(
                 patient=OuterRef('id'),
-                date__lte=today
+                date__lte=today,
+                station=station_id
             )
             .order_by('-date')
             .values('date')[:1]
